@@ -43,7 +43,7 @@ driver.find_element(:css, "span.RveJvd").click
 sleep(2)
 
 numero = driver.find_element(:id, "phoneNumberId")
-numero.send_keys "0758005309"
+numero.send_keys ARGV[1]
 driver.find_element(:css, "span.snByac").click
 
 sleep(2);
