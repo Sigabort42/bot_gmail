@@ -32,10 +32,6 @@ last.send_keys  lastname
 username = [firstname, lastname, rand(1000..100000).to_s].join #tab[rand(tab.size)].to_s].join
 user.send_keys  username
 
-puts "firstname =>" + firstname
-puts "lastname =>" + lastname
-puts "username =>" + username
-
 pass.send_keys  ARGV[0]
 pass_confirm.send_keys  ARGV[0]
 driver.find_element(:css, "span.RveJvd").click
@@ -51,22 +47,14 @@ sleep(2);
 puts "entrez le code d'activation $>".chomp
 code = STDIN.gets
 
-sleep(2)
-
 active_code = driver.find_element(:css, "input.whsOnd.zHQkBf")
 numero.send_keys code
 driver.find_element(:css, "span.snByac").click
 
-sleep(2)
-
 day = driver.find_element(:id, "day")
 day.send_keys "11"
-
-sleep(2)
-
 month = Selenium::WebDriver::Support::Select.new(driver.find_element(:tag_name , "select" ))
 month.select_by(:text , "Mars" )
-sleep(2)
 year = driver.find_element(:id, "year")
 year.send_keys "1990"
 
@@ -75,8 +63,5 @@ wait.until { driver.title.downcase.start_with? "cheese!" }
 
 file_name = File.open("identifiant.txt", "a")
 file_name.write("username => " + username + "@gmail.com" + "\n" + "password => " + ARGV[0] + "\n")
-
-
-#driver.save_screenshot "lo.png"
 
 driver.quit
