@@ -20,7 +20,6 @@ while (!((i = rand(tab_name.size)) % 2))
 end
 firstname = tab_name[i]
 firstname = firstname.chomp
-#firstname[firstname.size - 1] = ''
 first.send_keys  firstname
 
 while (((i = rand(tab_name.size)) % 2) != 1)
@@ -29,7 +28,7 @@ lastname = tab_name[i]
 lastname = lastname.chomp
 last.send_keys  lastname
 
-username = [firstname, lastname, rand(1000..100000).to_s].join #tab[rand(tab.size)].to_s].join
+username = [firstname, lastname, rand(1000..100000).to_s].join
 user.send_keys  username
 
 pass.send_keys  ARGV[0]
@@ -42,14 +41,18 @@ numero = driver.find_element(:id, "phoneNumberId")
 numero.send_keys ARGV[1]
 driver.find_element(:css, "span.snByac").click
 
-sleep(2);
+sleep(2)
 
 puts "entrez le code d'activation $>".chomp
 code = STDIN.gets
 
+sleep(2)
+
 active_code = driver.find_element(:css, "input.whsOnd.zHQkBf")
-numero.send_keys code
+active_code.send_keys code
 driver.find_element(:css, "span.snByac").click
+
+sleep(2)
 
 day = driver.find_element(:id, "day")
 day.send_keys "11"
@@ -58,7 +61,18 @@ month.select_by(:text , "Mars" )
 year = driver.find_element(:id, "year")
 year.send_keys "1990"
 
-wait = Selenium::WebDriver::Wait.new( :timeout => 100 )
+sexe = Selenium::WebDriver::Support::Select.new(driver.find_element(:tag_name , "select" ))
+sexe.select_by(:text , "Homme" )
+
+sleep(1)
+
+driver.find_element(:css, "span.snByac").click
+
+sleep(2)
+
+driver.find_element(:css, "button.uBOgn").click
+
+wait = Selenium::WebDriver::Wait.new( :timeout => 10 )
 wait.until { driver.title.downcase.start_with? "cheese!" }
 
 file_name = File.open("identifiant.txt", "a")
