@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'selenium-webdriver'
 
-driver = Selenium::WebDriver.for :safari
+driver = Selenium::WebDriver.for :chrome
 driver.get "https://accounts.google.com/signup/v2/webcreateaccount?continue=http%3A%2F%2Fsupport.google.com%2Faccounts%2Fanswer%2F183723%3Fco%3DGENIE.Platform%253DDesktop%26hl%3Dfr&hl=fr&flowName=GlifWebSignIn&flowEntry=SignUp"
 
 
@@ -43,7 +43,7 @@ driver.find_element(:css, "span.snByac").click
 
 sleep(2)
 
-puts "entrez le code d'activation $>".chomp
+print "entrez le code d'activation $>".chomp
 code = STDIN.gets
 
 sleep(2)
