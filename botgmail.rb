@@ -1,8 +1,9 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 require 'rubygems'
 require 'selenium-webdriver'
 
+Selenium::WebDriver::Chrome.driver_path = "./chromedriver"
 driver = Selenium::WebDriver.for :chrome
 driver.get "https://accounts.google.com/signup/v2/webcreateaccount?continue=http%3A%2F%2Fsupport.google.com%2Faccounts%2Fanswer%2F183723%3Fco%3DGENIE.Platform%253DDesktop%26hl%3Dfr&hl=fr&flowName=GlifWebSignIn&flowEntry=SignUp"
 
